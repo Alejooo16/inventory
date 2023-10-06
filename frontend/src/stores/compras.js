@@ -27,12 +27,13 @@ export const useComprasStore = defineStore("compras", () => {
     }
   };
 
-  const actualizarcompra = async (id, nombre, valor, cantidad) => {
+  const actualizarcompra = async (id, nombre, valor, cantidad, proveedor) => {
     try {
       const res = await axios.put(`${local}/compra/${id}`, {
         nombre: nombre,
         valor: valor,
-        cantidad: cantidad
+        cantidad: cantidad,
+        proveedor: proveedor
       });
       console.log(res);
       return res;

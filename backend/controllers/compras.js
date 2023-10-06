@@ -56,8 +56,9 @@ export const actualizarCompra = async (req, res) => {
     nombre:req.body.nombre,
     valor:req.body.valor,
     cantidad:req.body.cantidad,
+    proveedor: req.body.proveedor,
     estado:req.body.estado
-  } 
+  }
   
   try {
     const productoActualizado = await compras.findByIdAndUpdate(id, actualizado);

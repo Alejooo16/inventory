@@ -54,7 +54,6 @@ export const crearVenta = async (req, res) => {
 
 
 export const actualizarVenta = async (req, res) => {
-  
   const id = req.params.id
   console.log(`Venta actualizado ${id}`);
 
@@ -62,7 +61,7 @@ export const actualizarVenta = async (req, res) => {
     nombre:req.body.nombre,
     valor:req.body.valor,
     cantidad:req.body.cantidad,
-    estado:req.body.estado
+    cliente:req.body.cliente
   } 
   
   try {

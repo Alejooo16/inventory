@@ -6,7 +6,7 @@ const ventasSchema = new mongoose.Schema(
    valor: {type:String, require:true},
    cantidad: {type:String, require:true},
    cliente: {type:String, require:true},
-   estado : {type: Boolean, default: true },
+   estado : {type: Boolean, default:true },
    createdat : {type: Date, default: Date.now}
   },
   {

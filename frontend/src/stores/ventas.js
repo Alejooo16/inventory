@@ -27,13 +27,13 @@ export const useVentasStore = defineStore("ventas", () => {
     }
   };
 
-  const actualizarventa = async (id, nombre, descripcion, precio, cantidad) => {
+  const actualizarVenta = async (id,nombre,valor,cantidad,cliente) => {
     try {
       const res = await axios.put(`${local}/venta/${id}`, {
-        nombre: nombre,
-        descripcion: descripcion,
-        precio: precio,
-        cantidad: cantidad,
+         nombre:nombre,
+         valor:valor,
+         cantidad:cantidad,
+         cliente:cliente
       });
       console.log(res);
       return res;
@@ -55,7 +55,7 @@ export const useVentasStore = defineStore("ventas", () => {
   return {
     agregarventa,
     pedirventas,
-    actualizarventa,
+    actualizarVenta,
     actuestado,
     lodin
   };
