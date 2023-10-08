@@ -40,6 +40,12 @@
 <router-link to="/compras">
          <button style="width: 100%;" class="btn btn-dark" >Compras de insumos</button>
 </router-link>
+
+<br>
+
+<router-link to="/proveedores">
+                   <button style="width: 100%;" class="btn btn-dark" >Proveedores</button>
+          </router-link>
     
         </ul>
       </div>

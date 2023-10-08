@@ -3,6 +3,7 @@ import Login from '../components/Login.vue'
 import Contenedor from '../components/Contenedor.vue'
 import Ventas from "../components/Ventas.vue"
 import Compras from "../components/Compras.vue"
+import Proveedores from "../components/Proveedores.vue"
 
 import { createRouter , createWebHashHistory } from 'vue-router'
 
@@ -15,7 +16,8 @@ const routes = [
         children: [
         {path: "/producto", component : Producto},
         {path: "/ventas", component: Ventas},
-        {path: "/compras", component: Compras}
+        {path: "/compras", component: Compras},
+        {path: "/proveedores", component: Proveedores}
         ],
         beforeEnter: (to, from, next) => {
             const toke = sessionStorage.getItem('token');
