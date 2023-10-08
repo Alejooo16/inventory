@@ -3,7 +3,7 @@
       <span class="subtitulo">REGISTRO DE PROVEEDORES</span>
   
       <div class="busco">
-        <input v-model="buscado" type="text" placeholder="Buscar por nombre" />
+        <input v-model="buscado" type="text" placeholder="Buscar por proveedor" />
       </div>
   
       <div class="table-container">
@@ -65,7 +65,7 @@
             </div>
             <div class="modal-body">
               <div class="form-group">
-                <label for="descripcion">nombre</label>
+                <label for="descripcion">nombre del producto</label>
                 <input
                   autocomplete="off"
                   type="text"
@@ -187,7 +187,7 @@
   
   function traer(producto) {
     idnecesario.value = producto._id;
-    nombremodel.value = producto.nombre;
+    nombremodel.value = producto.nombreproducto;
     valormodel.value = producto.valor;
     cantidadmodel.value = producto.cantidad;
     proveedormodel.value = producto.proveedor;
@@ -249,7 +249,7 @@
     }
     let nombrebuscado = buscado.value;
     let resultados = comprasarray.value.filter((producto) =>
-      producto.nombre.includes(nombrebuscado)
+      producto.proveedor.includes(nombrebuscado)
     );
     return resultados;
   });

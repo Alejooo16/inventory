@@ -27,13 +27,14 @@ export const useproveedoresStore = defineStore("proveedores", () => {
     }
   };
 
-  const actualizarproveedor = async (id, nombre, valor, cantidad, proveedor) => {
+  const actualizarproveedor = async (id, nombre, valor, cantidad, proveedor, telefono) => {
     try {
       const res = await axios.put(`${local}/proveedor/${id}`, {
         nombre: nombre,
         valor: valor,
         cantidad: cantidad,
-        proveedor: proveedor
+        proveedor: proveedor,
+        telefono: telefono
       });
       console.log(res);
       return res;

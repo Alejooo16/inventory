@@ -165,6 +165,12 @@
               <input autocomplete="off" type="text" v-model="proveedorreabastecer" class="form-control" />
             </div>
 
+            
+            <div class="form-group">
+              <label for="proveedor">Telefono de la compañia proveedora</label>
+              <input autocomplete="off" type="text" v-model="telefonoreabastecer" class="form-control" />
+            </div>
+
 
             <div style="margin: 10px;" class="alert alert-danger d-flex align-items-center" role="alert" v-if="alerta_v">
               <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Danger:" style="height: 20px; width: 20px;">
@@ -367,6 +373,7 @@ import { ref, onMounted, computed } from "vue";
 import { useProductosStore } from "../stores/producto";
 import {useComprasStore} from "../stores/compras"
 import {useVentasStore} from "../stores/ventas"
+import { useproveedoresStore } from "../stores/proveedores";
 
 let productosarray = ref([]);
 let nombremodel = ref("");
@@ -386,6 +393,7 @@ let valorunidadreabastecer = ref("")
 let cantidadreabastecer = ref("")
 let proveedorreabastecer = ref("")
 let cantidadactualdeproducto = ref("")
+let telefonoreabastecer = ref("")
 
 let cantidadvender = ref("")
 let valorunidadvender = ref("")
@@ -398,6 +406,7 @@ let editarprecio = ref("")
 const useproductos = useProductosStore();
 const usecompras = useComprasStore()
 const useventas = useVentasStore()
+const useproveedores = useproveedoresStore()
 
 // se ejecuta en el onMounted
 async function traeproductos() {
@@ -442,6 +451,7 @@ function limpiarreabastecer() {
   cantidadreabastecer.value = "";
   valorunidadreabastecer.value = "";
   proveedorreabastecer.value = "";
+  telefonoreabastecer.value = "";
 }
 
 function limpiarventas() {
@@ -471,21 +481,31 @@ function traer(producto) {
 
   if (validacionesreabastecer() == true) {
 
-    const nuevo_producto = {
+    const nuevo_producto2 = {
+      proveedor: proveedorreabastecer.value,
+      cantidad: cantidadreabastecer.value,
+      telefono: telefonoreabastecer.value,
+      nombreproducto: nombrereabastecer.value,
+      valor: valorunidadreabastecer.value,
+    };
+
+ const gg = await useproveedores.agregarproveedor(nuevo_producto2)
+
+    const nuevo_producto1 = {
       nombre: nombrereabastecer.value,
       valor: valorunidadreabastecer.value,
       cantidad: cantidadreabastecer.value,
       proveedor: proveedorreabastecer.value
     };
 
-    const c = await usecompras.agregarcompra(nuevo_producto);
+    const c = await usecompras.agregarcompra(nuevo_producto1);
 
 
     let total = Number(cantidadactualdeproducto.value)  + Number(cantidadreabastecer.value) 
        console.log(idnecesario.value);
    console.log(total);
 
-    const a = await useproductos.actualizarproducto(idnecesario.value,total )
+    const a = await useproductos.actualizarproducto(idnecesario.value,total)
 
  limpiarreabastecer()
      traeproductos()
@@ -618,6 +638,8 @@ if (!cantidadreabastecer.value) {
     alerta_v.value = "El proveedor es obligatorio";
   }else if (!valorunidadreabastecer.value) {
     alerta_v.value = "El valor es obligatorio";
+  }else if (!telefonoreabastecer.value) {
+    alerta_v.value = "El telefono es obligatorio";
   } else {
     alerta_v.value = "";
     return (validacion.value = true);
